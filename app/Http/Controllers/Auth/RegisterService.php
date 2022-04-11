@@ -4,15 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Admin\Auth\Request\LoginRequest;
 use App\Http\Controllers\Auth\Request\RegisterRequest;
-use App\Http\Controllers\Controller;
 use App\Models\User\User;
 use App\Models\User\UserRepository;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Hash;
 
-class RegisterController extends Controller
+class RegisterService
 {
     /**
      * @var UserRepository
@@ -24,6 +21,10 @@ class RegisterController extends Controller
         $this->userRepository = $userRepository;
     }
 
+    public function verifyEmail(string $email): bool
+    {
+        $this->userRepository->
+    }
 
     public function register(RegisterRequest $request): View
     {

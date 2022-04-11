@@ -15,6 +15,8 @@ class User extends Authenticatable
     protected $table = 'user';
     protected $guard = 'user';
 
+    public const EMAIL = 'email';
+
     /**
      * The attributes that are mass assignable.
      *

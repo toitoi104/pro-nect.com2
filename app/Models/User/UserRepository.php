@@ -20,6 +20,11 @@ class UserRepository extends BaseRepository
         $this->model = $model;
     }
 
+    public function findByEmail(): User
+    {
+        $this->model::query()->where(User::)->;
+    }
+
     public function add(User $model): void
     {
         $this->addModel($model);

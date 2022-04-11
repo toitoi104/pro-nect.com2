@@ -16,8 +16,8 @@
             <li class="">
 
                 @if(Auth::guard('user')->check())
-                    <a href="/ask" class="text-xs whitespace-nowrap font-medium text-gray-500 hover:text-gray-900">
-                        ログイン
+                    <a href="{{route('user.ask.index')}}" class="text-xs text-white bg-blue-600 hover:bg-blue-700 rounded-sm px-3 py-3 font-sans">
+                        質問する
                     </a>
                 @else
                     <a href="/login" class="text-xs whitespace-nowrap font-medium text-gray-500 hover:text-gray-900">
@@ -26,11 +26,13 @@
                 @endif
 
             </li>
-            <li class="">
-                <a href="/register" class="ml-3 whitespace-nowrap inline-flex items-center justify-center px-2 py-1 border border-transparent rounded-md shadow-sm text-xs font-medium text-white bg-indigo-600 hover:bg-indigo-700">
-                    新規登録
-                </a>
-            </li>
+            @if(Auth::guard('user')->check())
+                <li class="">
+                    <a href="/" class="ml-3 whitespace-nowrap inline-flex items-center justify-center px-2 py-1 border border-transparent rounded-md shadow-sm text-xs font-medium">
+                        {{\Auth::guard('user')->user()->getName()}}
+                    </a>
+                </li>
+            @endif
         </ul>
     </nav>
 </div>
