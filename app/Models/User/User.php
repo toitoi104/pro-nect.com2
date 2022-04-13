@@ -2,7 +2,6 @@
 
 namespace App\Models\User;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -15,6 +14,7 @@ class User extends Authenticatable
     protected $table = 'user';
     protected $guard = 'user';
 
+    public const USER_ID = 'user_id';
     public const EMAIL = 'email';
 
     /**
@@ -36,6 +36,22 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
 
     /**
      * @return string

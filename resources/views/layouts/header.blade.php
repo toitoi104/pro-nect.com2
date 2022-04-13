@@ -16,7 +16,7 @@
             <li class="">
 
                 @if(Auth::guard('user')->check())
-                    <a href="{{route('user.ask.index')}}" class="text-xs text-white bg-blue-600 hover:bg-blue-700 rounded-sm px-3 py-3 font-sans">
+                    <a href="{{route('user.question')}}" class="text-xs text-white bg-blue-600 hover:bg-blue-700 rounded-sm px-3 py-3 font-sans">
                         質問する
                     </a>
                 @else

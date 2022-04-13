@@ -68,12 +68,16 @@ abstract class BaseRepository{
     }
 
     /**
-     * Build empty model.
-     * @param Model $model
+     * @param Eloquent|Model|null $model
+     *
+     * @return mixed
      */
-    protected function buildEmpty(?Model &$model): void{
-        if ($model === null){
+    protected function buildEmpty(?Model $model)
+    {
+        if (null === $model) {
             $model = $this->model->newModelInstance();
         }
+
+        return $model;
     }
 }

@@ -21,14 +21,14 @@ Route::view('/login', 'auth.login')->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/',  'welcome');
+Route::get('/questions',  [\App\Http\Controllers\Questions\QuestionsController::class, 'index'])->name('questions');
 
-Route::middleware('auth.user')->group(function () {
-    Route::prefix('ask')->group(function () {
-        Route::view('/', 'user.ask.index')->name('user.ask.index');
-        //Route::get('/', [RegisterController::class, 'register'])->name('main.list');
+Route::middleware('auth.user')->prefix('user')->group(function () {
+    Route::prefix('question')->group(function () {
+        Route::view('/', 'user.question.index')->name('user.question');
+        Route::view('/complete', 'user.question.complete')->name('user.question.complete');
+        Route::post('/create', [\App\Http\Controllers\User\Question\QuestionController::class, 'create'])->name('user.question.create');
     });
 });
 
