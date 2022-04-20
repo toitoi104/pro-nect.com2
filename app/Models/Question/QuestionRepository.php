@@ -20,9 +20,16 @@ class QuestionRepository extends BaseRepository
         $this->model = $model;
     }
 
-    public function findByStatus(int $status): Collection
+    public function find(int $id): Question
     {
-        return $this->model->query()->where(Question::STATUS, $status)->get();
+        $model = $this->model->query()->where(Question::ID, $id)->first();
+
+        return $this->buildEmpty($model);
+    }
+
+    public function findByPublic(bool $public): Collection
+    {
+        return $this->model->query()->where(Question::PUBLIC, $public)->get();
     }
 
     public function add(Question $model): void

@@ -18,6 +18,8 @@ class Question extends Model
     const CONTENTS = 'contents';
     const TYPE = 'type';
     const STATUS = 'status';
+    const PUBLIC = 'public';
+    const SOLVED = 'solved';
 
     /**
      * @return int
@@ -113,5 +115,39 @@ class Question extends Model
     public function setStatus(int $status): void
     {
         $this->status = $status;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPublic(): bool
+    {
+        return $this->public;
+    }
+
+    /**
+     * @param bool $public
+     */
+    public function setPublic(bool $public): void
+    {
+        $this->public = $public;
+    }
+
+    private $solved=false;
+
+    /**
+     * @return bool
+     */
+    public function isSolved(): bool
+    {
+        return $this->solved;
+    }
+
+    /**
+     * @param bool $solved
+     */
+    public function setSolved(bool $solved): void
+    {
+        $this->solved = $solved;
     }
 }

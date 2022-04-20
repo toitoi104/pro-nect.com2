@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\User\Question;
 
 use App\Http\Controllers\User\Question\Request\QuestionRequest;
-use App\Models\Question\Enum\Status;
 use App\Models\Question\Question;
 use App\Models\Question\QuestionRepository;
 use App\Models\User\User;
@@ -29,7 +28,8 @@ class QuestionService
         $question->setContents($request->getContents());
         $question->setType($request->getType());
         $question->setTitle($request->getTitle());
-        $question->setStatus(Status::PUBLIC);
+        $question->setPublic(true);
+        $question->setSolved(false);
 
         $this->questionRepository->add($question);
     }

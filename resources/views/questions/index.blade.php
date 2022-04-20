@@ -9,9 +9,28 @@
 @endphp
 
 @section('contents')
-    質問の一覧がpaginationで出てくる
+    <div>
+        <div>
+            @foreach($questions as $question)
+                <div class="border border-l-0 border-r-0 py-3">
+                    <div class="flex mx-5">
+                        @if($question->isSolved())
+                            <span class="text-xs text-white bg-blue-600 rounded-sm px-5 py-1 font-sans">
+                                解決済み
+                            </span>
+                        @else
+                            <span class="text-xs text-white bg-gray-500 rounded-sm px-5 py-1 font-sans">
+                                受付中
+                            </span>
+                        @endif
 
-    @foreach($questions as $question)
-        <div>{{$question->getTitle()}}</div>
-    @endforeach
+                        <a href="{{route('questions.detail', ['id' => $question->getId()])}}"
+                           class="ml-3 font-bold text-blue-500 hover:text-blue-600 cursor-pointer">
+                            {{$question->getTitle()}}
+                        </a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
 @endsection
