@@ -3,6 +3,7 @@
 namespace App\Models\Question;
 
 use App\Models\BaseRepository;
+use App\Models\User\User;
 use Illuminate\Database\Eloquent\Collection;
 
 /**
@@ -29,7 +30,12 @@ class QuestionRepository extends BaseRepository
 
     public function findByPublic(bool $public): Collection
     {
-        return $this->model->query()->where(Question::PUBLIC, $public)->get();
+        $models = $this->model->query()
+            ->join(User::TABLE, Question::dot(Question::USER_ID), User::dot(User::ID))
+            ->where(Question::PUBLIC, $public)
+            ->get();
+
+        return $models;
     }
 
     public function add(Question $model): void

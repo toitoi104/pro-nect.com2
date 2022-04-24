@@ -2,9 +2,9 @@
 
 namespace App\Models\Question;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseEloquent;
 
-class Question extends Model
+class Question extends BaseEloquent
 {
     const TABLE = 'question';
 
@@ -149,5 +149,10 @@ class Question extends Model
     public function setSolved(bool $solved): void
     {
         $this->solved = $solved;
+    }
+
+    public function getCreatedAt(): string
+    {
+        return $this->created_at;
     }
 }
