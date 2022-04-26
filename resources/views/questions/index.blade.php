@@ -11,6 +11,10 @@
 @section('contents')
     <div>
         <div>
+            <div class="my-2">
+                {{ $questions->links() }}
+            </div>
+
             @foreach($questions as $question)
                 <div class="border border-l-0 border-r-0 py-3 mx-5">
                     <div class="flex w-full">

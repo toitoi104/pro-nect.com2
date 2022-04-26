@@ -155,4 +155,11 @@ class Question extends BaseEloquent
     {
         return $this->created_at;
     }
+
+    public function getContentsRows(): array
+    {
+        $vs = preg_replace("/^\n/", ' \n', $this->contents);
+
+        return explode("\n", $vs);
+    }
 }

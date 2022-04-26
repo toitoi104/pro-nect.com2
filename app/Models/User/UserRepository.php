@@ -3,7 +3,6 @@
 namespace App\Models\User;
 
 use App\Models\BaseRepository;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
  *

@@ -13,9 +13,17 @@ class QuestionsController extends Controller
      */
     private $questionRepository;
 
-    public function __construct(QuestionRepository $questionRepository)
-    {
+    /**
+     * @var QuestionService $questionService
+     */
+    private $questionService;
+
+    public function __construct(
+        QuestionRepository $questionRepository,
+        QuestionService $questionService
+    ){
         $this->questionRepository = $questionRepository;
+        $this->questionService = $questionService;
     }
 
     public function index(): View

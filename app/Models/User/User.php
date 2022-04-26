@@ -2,19 +2,19 @@
 
 namespace App\Models\User;
 
-use App\Models\BaseEloquent;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends BaseEloquent implements Authenticatable
+class User extends Authenticatable
 {
-    const TABLE = 'user';
-
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $table = self::TABLE;
+    const TABLE = 'user';
+
+    protected $table = 'user';
     protected $guard = 'user';
 
     public const ID = 'id';
@@ -104,55 +104,8 @@ class User extends BaseEloquent implements Authenticatable
         $this->password = $password;
     }
 
-    // ---- Auth ---------------------------------
-
-    /**
-     * Get the name of the unique identifier for the user.
-     */
-    public function getAuthIdentifierName(): string
+    public static function dot(string $v):string
     {
-        return self::ID;
-    }
-
-    /**
-     * Get the column name for the "remember me" token.
-     */
-    public function getRememberTokenName(): string
-    {
-        return 'dummy';
-    }
-
-    /**
-     * Get the unique identifier for the user.
-     */
-    public function getAuthIdentifier(): ?int
-    {
-        return $this->{self::ID};
-    }
-
-    /**
-     * Get stored password.
-     */
-    public function getAuthPassword(): string
-    {
-        return '';
-    }
-
-
-    /**
-     * Get the token value for the "remember me" session.
-     */
-    public function getRememberToken(): string
-    {
-        return 'dummy';
-    }
-
-    /**
-     * Set the token value for the "remember me" session.
-     *
-     * @param string $value
-     */
-    public function setRememberToken($value): void
-    {
+        return User::TABLE.'.'.$v;
     }
 }

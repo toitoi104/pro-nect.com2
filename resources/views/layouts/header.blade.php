@@ -16,12 +16,15 @@
             <li class="">
 
                 @if(Auth::guard('user')->check())
-                    <a href="{{route('user.question')}}" class="text-xs text-white bg-blue-600 hover:bg-blue-700 rounded-sm px-3 py-3 font-sans">
+                    <a href="{{route('user.question')}}" class="text-xs text-white bg-blue-600 hover:bg-blue-700 rounded-sm px-3 py-2 font-sans">
                         質問する
                     </a>
                 @else
-                    <a href="/login" class="text-xs whitespace-nowrap font-medium text-gray-500 hover:text-gray-900">
+                    <a href="/login" class="text-xs whitespace-nowrap font-medium text-gray-500 hover:text-gray-900 mr-3">
                         ログイン
+                    </a>
+                    <a href="{{route('register')}}" class="text-xs text-white bg-blue-600 hover:bg-blue-700 rounded-sm px-3 py-2 font-sans">
+                        無料登録
                     </a>
                 @endif
 

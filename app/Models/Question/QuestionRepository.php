@@ -5,6 +5,7 @@ namespace App\Models\Question;
 use App\Models\BaseRepository;
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
  *
@@ -28,12 +29,18 @@ class QuestionRepository extends BaseRepository
         return $this->buildEmpty($model);
     }
 
-    public function findByPublic(bool $public): Collection
+    public function findByPublic(bool $public): LengthAwarePaginator
     {
         $models = $this->model->query()
-            ->join(User::TABLE, Question::dot(Question::USER_ID), User::dot(User::ID))
+            ->select([
+                Question::dot(Question::ID),
+                Question::dot(Question::TITLE),
+                Question::dot(Question::USER_ID),
+                Question::dot(Question::CREATED_AT),
+            ])
+            ->leftJoin(User::TABLE, Question::dot(Question::USER_ID), User::dot(User::ID))
             ->where(Question::PUBLIC, $public)
-            ->get();
+            ->paginate(20);
 
         return $models;
     }
