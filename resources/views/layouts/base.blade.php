@@ -7,6 +7,9 @@
     <meta name="title" content="@yield('title')">
     <meta name="Description" content="@yield('description')">
 
+    <link rel="icon" type="image/x-icon" href="/img/logo/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/logo/apple-touch-icon-180x180.png">
+
     @if(app()->isProduction())
         <meta name="robots" content="index,follow">
     @else
