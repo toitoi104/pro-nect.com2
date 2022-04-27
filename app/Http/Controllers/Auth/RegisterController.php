@@ -19,18 +19,36 @@ class RegisterController extends Controller
      */
     private $userRepository;
 
-    public function __construct(UserRepository $userRepository)
-    {
+    /**
+     * @var RegisterService
+     */
+    private $registerService;
+
+    public function __construct(
+        UserRepository $userRepository,
+        RegisterService $registerService
+    ){
         $this->userRepository = $userRepository;
+        $this->registerService = $registerService;
     }
 
-
-    public function register(RegisterRequest $request): View
+    public function register(RegisterRequest $request)
     {
+        $email = $request->getEmail();
+        $name = $request->getName();
+
+        if($this->registerService->existEmail($email)){
+            return back()->withErrors(['email' => 'このメールアドレスは登録済みです']);
+        }
+
+        if($this->registerService->existName($name)){
+            return back()->withErrors(['name' => 'この名前は登録済みです']);
+        }
+
         $user = new User();
-        $user->setName($request->getName());
+        $user->setName($name);
         $user->setPassword(Hash::make($request->getPassword()));
-        $user->setEmail($request->getEmail());
+        $user->setEmail($email);
 
         $this->userRepository->add($user);
 

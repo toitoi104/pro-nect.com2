@@ -21,9 +21,14 @@ class RegisterService
         $this->userRepository = $userRepository;
     }
 
-    public function verifyEmail(string $email): bool
+    public function existName(string $name): bool
     {
-        $this->userRepository->
+        return $this->userRepository->findByName($name)->exists;
+    }
+
+    public function existEmail(string $email): bool
+    {
+        return $this->userRepository->findByEmail($email)->exists;
     }
 
     public function register(RegisterRequest $request): View
