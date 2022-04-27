@@ -1,16 +1,13 @@
 <div class="flex-1 flex flex-col">
     <nav class="px-2 flex justify-between bg-white h-12 border-b-2">
         <ul class="flex items-center">
-            <li class="">
+            <li class="mr-3">
                 <a href="/"><img class="h-12 w-full mx-auto" src="/img/logo/simple_logo.png" alt="logo" /></a>
             </li>
-        </ul>
-
-        {{--<ul class="flex items-center">
-            <li>
-                <h1 class="pl-8 lg:pl-0 text-gray-700">Svelte</h1>
+            <li class="text-xs text-blue-400 hover:text-blue-500">
+                <a href="{{route('questions')}}">質問一覧</a>
             </li>
-        </ul>--}}
+        </ul>
 
         <ul class="flex items-center">
             <li class="">

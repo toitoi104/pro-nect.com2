@@ -29,6 +29,9 @@
                 <div class="my-2 sm:my-0">
                     <span class="sm:ml-3">{{\Carbon\Carbon::parse($question->get)->format('Y-m-d')}}</span>
                 </div>
+                    <div class="my-2 sm:my-0">
+                        <span class="sm:ml-3">{{$question->name}}</span>
+                    </div>
             </div>
             <div class="text-xl font-bold">{{$question->getTitle()}}</div>
 

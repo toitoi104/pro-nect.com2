@@ -30,7 +30,9 @@
                             @endif
 
                             <div class="text-center">
-                                <div class="text-2xl py-1">0</div>
+                                <div class="text-2xl py-1">
+                                    {{$question->count ?? 0}}
+                                </div>
                                 <div class="text-xs ">回答</div>
                             </div>
                         </div>

@@ -2,10 +2,12 @@
 
 namespace App\Models\Question;
 
+use App\Models\Answer\Answer;
 use App\Models\BaseRepository;
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\DB;
 
 /**
  *
@@ -24,22 +26,33 @@ class QuestionRepository extends BaseRepository
 
     public function find(int $id): Question
     {
-        $model = $this->model->query()->where(Question::ID, $id)->first();
+        $model = $this->model->query()
+            ->select([
+                Question::dot('*'),
+                User::dot(User::NAME)
+            ])
+            ->leftJoin(User::TABLE, Question::dot(Question::USER_ID), User::dot(User::ID))
+            ->where(Question::dot(Question::ID), $id)->first();
 
         return $this->buildEmpty($model);
     }
 
-    public function findByPublic(bool $public): LengthAwarePaginator
+    public function search(): LengthAwarePaginator
     {
+        $subQuery = DB::table(Answer::TABLE)->select(DB::raw('question_id , COUNT(*) as count'))
+            ->groupBy(Answer::QUESTION_ID);
+
         $models = $this->model->query()
             ->select([
                 Question::dot(Question::ID),
                 Question::dot(Question::TITLE),
                 Question::dot(Question::USER_ID),
                 Question::dot(Question::CREATED_AT),
+                DB::raw('sub.count'),
             ])
             ->leftJoin(User::TABLE, Question::dot(Question::USER_ID), User::dot(User::ID))
-            ->where(Question::PUBLIC, $public)
+            ->leftJoinSub($subQuery, 'sub', Question::dot(Question::ID), '=', 'sub.question_id')
+            ->where(Question::PUBLIC, true)
             ->paginate(20);
 
         return $models;

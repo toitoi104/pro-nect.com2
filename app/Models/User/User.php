@@ -19,6 +19,7 @@ class User extends Authenticatable
 
     public const ID = 'id';
     public const EMAIL = 'email';
+    public const NAME = 'name';
 
     /**
      * The attributes that are mass assignable.

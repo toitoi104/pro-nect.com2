@@ -35,7 +35,7 @@ class QuestionService
 
     public function searchQuestions(): LengthAwarePaginator
     {
-        $questions = $this->questionRepository->findByPublic(true);
+        $questions = $this->questionRepository->search();
 
         return $questions;
     }
