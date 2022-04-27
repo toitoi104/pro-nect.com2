@@ -8,10 +8,6 @@ use Illuminate\View\View;
 
 class QuestionsController extends Controller
 {
-    /**
-     * @var QuestionRepository
-     */
-    private $questionRepository;
 
     /**
      * @var QuestionService $questionService
@@ -19,28 +15,28 @@ class QuestionsController extends Controller
     private $questionService;
 
     public function __construct(
-        QuestionRepository $questionRepository,
         QuestionService $questionService
     ){
-        $this->questionRepository = $questionRepository;
         $this->questionService = $questionService;
     }
 
     public function index(): View
     {
-        $questions = $this->questionRepository->findByPublic(true);
+        $questions = $this->questionService->searchQuestions();
 
         return view('questions.index', compact('questions'));
     }
 
     public function detail(int $id): View
     {
-        $question = $this->questionRepository->find($id);
+        $question = $this->questionService->find($id);
 
         if(!$question->exists || !$question->isPublic()){
             abort(404);
         }
 
-        return view('questions.detail', compact('question'));
+        $answers = $this->questionService->getAnswers($id);
+
+        return view('questions.detail', compact('question', 'answers'));
     }
 }

@@ -30,9 +30,9 @@ Route::middleware('auth.user')->prefix('user')->group(function () {
         Route::view('/', 'user.question.index')->name('user.question');
         Route::view('/complete', 'user.question.complete')->name('user.question.complete');
         Route::post('/create', [\App\Http\Controllers\User\Question\QuestionController::class, 'create'])->name('user.question.create');
+        Route::post('/answer', [\App\Http\Controllers\User\Question\QuestionController::class, 'answer'])->name('user.question.answer');
     });
 });
-
 
 Route::prefix('admin')->group(function () {
     Route::view('/sample/design', 'admin.sample.design')->name('admin.sample.design');

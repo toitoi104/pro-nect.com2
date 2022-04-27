@@ -32,30 +32,55 @@
             </div>
             <div class="text-xl font-bold">{{$question->getTitle()}}</div>
 
-            <div class="border border-t my-3"></div>
+            <div class="border border-t my-5"></div>
 
-            <div>
-                @foreach($question->getContentsRows() as $row)
-                    @if(preg_match("/\<code\>/", $row))
-                        <div class="text-white bg-gray-700 p-3">
-                        <code>
-                    @elseif(preg_match("/\<\/code\>/", $row))
-                        </code>
+            @include('common.showContent', ['questionAnswer' => $question])
+
+            <div class="border border-t my-5"></div>
+
+            <div class="text-lg font-bold mt-5 mb-8">回答一覧</div>
+
+            @if(!empty($answers->count()))
+                @php $i = 1; @endphp
+                @foreach($answers as $answer)
+                    <div class="flex mt-5">
+                        <div class="hidden sm:block mr-3">
+                            <span class="text-lg text-white bg-blue-600 hover:bg-blue-700 rounded-sm px-4 py-2 font-sans">
+                                {{$i}}
+                            </span>
                         </div>
-                    @elseif(empty($row))
-                        <br>
-                    @else
-                        {!! nl2br(e($row)) !!}
-                    @endif
+                        <div class="w-full">
+                            @include('common.showContent', ['questionAnswer' => $answer])
+                        </div>
+                    </div>
+                    <div class="flex justify-end py-2">
+                        {{$answer->name}}
+                    </div>
+                    <div class="border border-t my-5"></div>
+                    @php $i++ @endphp
                 @endforeach
-            </div>
-
-            <div class="border border-t my-3"></div>
+            @else
+                <div>まだ回答ありません。回答しましょう！</div>
+                <div class="border border-t my-5"></div>
+            @endif
 
             @if(\Illuminate\Support\Facades\Auth::guard('user')->check())
-                <div class="flex justify-end">
-                    <button class="text-sm text-white bg-blue-600 hover:bg-blue-700 rounded-sm px-7 py-3 font-sans">回答する</button>
-                </div>
+                <div class="text-lg font-bold mt-5 mb-3">あなたの回答</div>
+                <button type="button" class="text-xs text-white bg-indigo-600 hover:bg-indigo-700 rounded-sm px-9 py-1 mb-3 font-sans" onclick="insertCode()">
+                    Code
+                </button>
+                <form action="{{route('user.question.answer')}}" method="post">
+                    <div>
+                        <textarea id="textarea" name="{{\App\Models\Answer\Answer::CONTENTS}}" rows="5" placeholder="回答内容"
+                                  class="border border-gray-400 p-1 w-full rounded focus:outline-none focus:border-blue-300"></textarea>
+                    </div>
+
+                    <div class="flex justify-end">
+                        <button class="text-sm text-white bg-blue-600 hover:bg-blue-700 rounded-sm px-7 py-3 font-sans">回答する</button>
+                    </div>
+                    <input type="hidden" name="{{\App\Models\Answer\Answer::QUESTION_ID}}" value="{{$question->getId()}}">
+                    @csrf
+                </form>
             @else
                 <div class="flex justify-end">
                     <a href="{{route('login')}}"
@@ -65,4 +90,10 @@
 
         </div>
     </div>
+    <script>
+        function insertCode()
+        {
+            document.getElementById('textarea').value += "<code>" + "\n" + "</code>";
+        }
+    </script>
 @endsection
