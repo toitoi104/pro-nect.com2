@@ -53,6 +53,7 @@ class QuestionRepository extends BaseRepository
             ->leftJoin(User::TABLE, Question::dot(Question::USER_ID), User::dot(User::ID))
             ->leftJoinSub($subQuery, 'sub', Question::dot(Question::ID), '=', 'sub.question_id')
             ->where(Question::PUBLIC, true)
+            ->orderByDesc(Question::ID)
             ->paginate(20);
 
         return $models;
