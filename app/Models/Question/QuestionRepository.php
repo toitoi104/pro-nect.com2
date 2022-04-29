@@ -48,6 +48,8 @@ class QuestionRepository extends BaseRepository
                 Question::dot(Question::TITLE),
                 Question::dot(Question::USER_ID),
                 Question::dot(Question::CREATED_AT),
+                Question::dot(Question::PV),
+                User::dot(User::NAME),
                 DB::raw('sub.count'),
             ])
             ->leftJoin(User::TABLE, Question::dot(Question::USER_ID), User::dot(User::ID))

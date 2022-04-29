@@ -35,6 +35,7 @@ class QuestionsController extends Controller
             abort(404);
         }
 
+        $this->questionService->countPv($question);
         $answers = $this->questionService->getAnswers($id);
 
         return view('questions.detail', compact('question', 'answers'));

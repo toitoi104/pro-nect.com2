@@ -40,14 +40,20 @@
                         <div class="w-full">
                             <div>
                                 <a href="{{route('questions.detail', ['id' => $question->getId()])}}"
-                                   class="text-lg ml-3 font-bold text-blue-500 hover:text-blue-600 cursor-pointer">
+                                   class="text-lg ml-3 text-base font-bold text-blue-500 hover:text-blue-600 cursor-pointer">
                                     {{$question->getTitle()}}
                                 </a>
                             </div>
-                            <div>
-                                <div class="flex justify-end">{{$question->name}}</div>
-                                <div class="flex justify-end">
-                                    {{\Carbon\Carbon::parse($question->getCreatedAt())->format('Y/m/d')}}
+                            <div class="text-sm mt-3 block sm:flex sm:justify-between">
+                                <div class="ml-3 font-bold">
+                                    <span class="mr-1">{{$question->getPv()}}</span>閲覧
+                                </div>
+
+                                <div class="flex ml-3 sm:ml-0">
+                                    <div class="mr-2">{{$question->name}}</div>
+                                    <div class="">
+                                        {{\Carbon\Carbon::parse($question->getCreatedAt())->format('Y/m/d')}}
+                                    </div>
                                 </div>
                             </div>
                         </div>

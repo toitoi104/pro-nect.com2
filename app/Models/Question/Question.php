@@ -20,6 +20,7 @@ class Question extends BaseEloquent
     const STATUS = 'status';
     const PUBLIC = 'public';
     const SOLVED = 'solved';
+    const PV = 'pv';
 
     /**
      * @return int
@@ -149,6 +150,22 @@ class Question extends BaseEloquent
     public function setSolved(bool $solved): void
     {
         $this->solved = $solved;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPv(): int
+    {
+        return $this->pv;
+    }
+
+    /**
+     * @param int $pv
+     */
+    public function setPv(int $pv): void
+    {
+        $this->pv = $pv;
     }
 
     public function getCreatedAt(): string

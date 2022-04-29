@@ -33,6 +33,14 @@ class QuestionService
         return $this->questionRepository->find($id);
     }
 
+    public function countPv(Question $question): void
+    {
+        $pv = $question->getPv() + 1;
+        $question->setPv($pv);
+
+        $this->questionRepository->update($question);
+    }
+
     public function searchQuestions(): LengthAwarePaginator
     {
         $questions = $this->questionRepository->search();
