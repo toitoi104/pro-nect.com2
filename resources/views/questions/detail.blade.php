@@ -48,7 +48,7 @@
                 @foreach($answers as $answer)
                     <div class="flex mt-5">
                         <div class="hidden sm:block mr-3">
-                            <span class="text-lg text-white bg-blue-600 hover:bg-blue-700 rounded-sm px-4 py-2 font-sans">
+                            <span class="text-lg text-white bg-gray-600 rounded-sm px-4 py-2 font-sans">
                                 {{$i}}
                             </span>
                         </div>

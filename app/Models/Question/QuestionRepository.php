@@ -58,6 +58,11 @@ class QuestionRepository extends BaseRepository
         return $models;
     }
 
+    public function countQuestions(): int
+    {
+        return $this->model::query()->count();
+    }
+
     public function add(Question $model): void
     {
         $this->addModel($model);

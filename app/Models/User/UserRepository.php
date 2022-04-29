@@ -39,6 +39,11 @@ class UserRepository extends BaseRepository
         return $model;
     }
 
+    public function countUsers(): int
+    {
+        return $this->model::query()->count();
+    }
+
     public function add(User $model): void
     {
         $this->addModel($model);

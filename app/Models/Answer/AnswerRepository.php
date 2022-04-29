@@ -37,6 +37,11 @@ class AnswerRepository extends BaseRepository
             ->get();
     }
 
+    public function countAnswers(): int
+    {
+        return $this->model::query()->count();
+    }
+
     public function add(Answer $model): void
     {
         $this->addModel($model);

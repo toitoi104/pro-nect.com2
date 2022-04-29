@@ -21,9 +21,12 @@ Route::view('/login', 'auth.login')->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout']);
 
-Route::view('/',  'welcome');
-Route::get('/questions',  [\App\Http\Controllers\Questions\QuestionsController::class, 'index'])->name('questions');
-Route::get('/questions/{id}',  [\App\Http\Controllers\Questions\QuestionsController::class, 'detail'])->name('questions.detail');
+Route::get('/', [\App\Http\Controllers\Welcome\WelcomeController::class, 'index']);
+Route::view('/legal', 'service.legal');
+
+
+Route::get('/questions', [\App\Http\Controllers\Questions\QuestionsController::class, 'index'])->name('questions');
+Route::get('/questions/{id}', [\App\Http\Controllers\Questions\QuestionsController::class, 'detail'])->name('questions.detail');
 
 Route::middleware('auth.user')->prefix('user')->group(function () {
     Route::prefix('question')->group(function () {

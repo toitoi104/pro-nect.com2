@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=1024">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="title" content="新規登録 | pro-nect(プロネクト)">
     <meta name="Description" content="pro-nect(プロネクト)の新規登録画面です">

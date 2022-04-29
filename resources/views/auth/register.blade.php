@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=1024">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="title" content="新規登録 | pro-nect(プロネクト)">
     <meta name="Description" content="pro-nect(プロネクト)の新規登録画面です">
@@ -24,7 +24,7 @@
 
 <!-- This is an example component -->
 <div class="py-10 flex justify-center">
-    <div class="bg-white shadow-md border border-gray-200 rounded-lg w-96 p-4 sm:p-6 lg:p-8">
+    <div class="bg-white shadow-md border border-gray-200 rounded-lg mx-2 w-full sm:w-96 p-4 sm:p-6 lg:p-8">
 
         @if ($errors->any())
             <div class="flex bg-red-100 rounded-lg p-4 mb-4 text-sm text-red-700" role="alert">
