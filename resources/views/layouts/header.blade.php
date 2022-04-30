@@ -2,7 +2,7 @@
     <nav class="px-2 flex justify-between bg-white h-12 border-b-2">
         <ul class="flex items-center">
             <li class="mr-3">
-                <a href="/"><img class="h-12 w-full mx-auto" src="/img/logo/simple_logo.png" alt="logo" /></a>
+                <a href="/"><img class="h-12 w-full mx-auto" src="/img/logo/simple_logo.png" alt="Pronect(プロネクト)" /></a>
             </li>
             <li class="text-xs text-blue-400 hover:text-blue-500">
                 <a href="{{route('questions')}}">質問一覧</a>
