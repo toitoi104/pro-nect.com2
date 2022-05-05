@@ -96,7 +96,7 @@
     <script>
         function insertCode()
         {
-            document.getElementById('textarea').value += "<code>" + "\n" + "</code>";
+            document.getElementById('textarea').value += "[code]" + "\n" + "[/code]";
         }
     </script>
 @endsection
