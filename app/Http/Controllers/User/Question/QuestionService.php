@@ -46,23 +46,25 @@ class QuestionService
         $this->questionRepository->add($question);
     }
 
+    public function answer(User $user, AnswerRequest $request): void
+    {
+        $contents = $this->changeContents($request->getContents());
+
+        $answer = new Answer();
+
+        $answer->setQuestionId($request->getQuestionId());
+        $answer->setContents($contents);
+        $answer->setUserId($user->getId());
+        $answer->setIsBest(false);
+
+        $this->answerRepository->add($answer);
+    }
+
     private function changeContents(string $contents): string
     {
         $contents = preg_replace("/</", "&lt;", $contents);
         $contents = preg_replace('/\>/', '&gt;', $contents);
 
         return $contents;
-    }
-
-    public function answer(User $user, AnswerRequest $request): void
-    {
-        $answer = new Answer();
-
-        $answer->setQuestionId($request->getQuestionId());
-        $answer->setContents($request->getContents());
-        $answer->setUserId($user->getId());
-        $answer->setIsBest(false);
-
-        $this->answerRepository->add($answer);
     }
 }
