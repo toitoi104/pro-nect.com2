@@ -11,6 +11,8 @@
 @section('contents')
     <div class="p-2 sm:p-5 bg-gray-100 flex justify-center">
         <div class="bg-white p-5 w-full sm:w-4/5">
+            <h1 class="text-xl font-bold mb-3 ">{{$question->getTitle()}}</h1>
+
             <div class="mb-3 block sm:flex">
                 @if($question->isSolved())
                     <span class="text-sm text-white bg-blue-600 rounded-sm px-5 py-1 font-sans">
@@ -33,7 +35,6 @@
                         <span class="sm:ml-3">{{$question->name}}</span>
                     </div>
             </div>
-            <div class="text-xl font-bold">{{$question->getTitle()}}</div>
 
             <div class="border border-t my-5"></div>
 
